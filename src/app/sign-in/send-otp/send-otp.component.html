@@ -1,0 +1,8 @@
+<div class="form-floating mb-2">
+  <form [formGroup]="formGroup">
+    <input type="phone" class="form-control" id="floatingInput" placeholder="+39 3334567890" formControlName="phone">
+    <label for="floatingInput">Phone Number</label>
+  </form>
+</div>
+
+<button class="w-100 btn btn-lg btn-primary" [disabled]="formGroup.invalid" (click)="sendOtp()">Send Code</button>

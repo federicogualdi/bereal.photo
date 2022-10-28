@@ -1,0 +1,8 @@
+<div class="form-floating mb-2">
+  <form [formGroup]="formGroup">
+    <input class="form-control" id="floatingInput" placeholder="123456" formControlName="code">
+    <label for="floatingInput">Received Code</label>
+  </form>
+</div>
+
+<button class="w-100 btn btn-lg btn-primary" [disabled]="formGroup.invalid" (click)="verifyOtp()">Verify Code</button>
