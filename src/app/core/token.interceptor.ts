@@ -51,6 +51,10 @@ export class TokenInterceptor implements HttpInterceptor {
       return false;
     }
 
+    if (request.url.indexOf('/refreshToken') !== -1) {
+      return false;
+    }
+
     return true;
   }
 }

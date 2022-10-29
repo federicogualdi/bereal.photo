@@ -5,8 +5,8 @@ import {
   CanLoad,
   Router
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError, map, startWith } from 'rxjs/operators';
+import { iif, Observable, of } from 'rxjs';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -34,14 +34,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   private handleAuthentication(): Observable<boolean> {
     return new Observable().pipe(
       startWith(""),
-      map(() => this.authService.isLoggedIn()),
-      map((res) => {
-        if (res) {
-          return true;
-        }
-        this.router.navigate(['/sign-in']);
-        return false;
-      }),
+      switchMap(() =>
+        iif(() =>
+          this.authService.isLoggedIn(),
+          of(true),
+          this.authService.refreshToken().pipe(map(() => (true)))
+        )
+      ),
       catchError((err) => {
         this.router.navigate(['/sign-in']);
         return of(false);

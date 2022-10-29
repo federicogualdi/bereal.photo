@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
+import { map, Observable, of, tap, throwError } from 'rxjs';
 import { OtpVerified } from '../sign-in/sign-in.service';
 
 type RefreshToken = {
@@ -64,30 +64,29 @@ export class AuthService {
 
   }
 
-  private updateToken(): Observable<string> {
-    let isLoggedIn = false;
-
+  updateToken(): Observable<string> {
     try {
-      isLoggedIn = this.isLoggedIn();
+      const isLoggedIn = this.isLoggedIn();
+
+
+      if (isLoggedIn) {
+        return of(this.beRealPhotoToken?.idToken!);
+      }
+
+      return this.refreshToken().pipe(
+        map(res => res.id_token)
+      );
     }
     catch (e) {
       return throwError(() => e)
     }
-
-    if (isLoggedIn) {
-      return of(this.beRealPhotoToken?.idToken!);
-    }
-
-    return this.refreshToken(this.getRefreshToken()!).pipe(
-      map(res => res.id_token)
-    );
   }
 
-  private refreshToken(refreshToken: string) {
+  refreshToken() {
     return this.httpClient.post<RefreshToken>(
       this.basePath + this.REFRESH_TOKEN_URL,
       {
-        refresh_token: refreshToken,
+        refresh_token: this.getRefreshToken()?.refreshToken,
         grant_type: "refresh_token"
       },
       {
@@ -100,7 +99,7 @@ export class AuthService {
     );
   }
 
-  private getRefreshToken() {
+  private getRefreshToken(): BeRealPhotoToken | undefined {
     const obj = localStorage.getItem(this.REFRESH_STORAGE_KEY);
     if (!obj) return undefined;
     return JSON.parse(obj);
