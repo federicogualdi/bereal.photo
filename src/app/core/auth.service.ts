@@ -41,9 +41,8 @@ export class AuthService {
     }
 
     const isTokenExpired =
-      this.beRealPhotoToken?.expiresAt! >= Date.now();
+      Date.now() >= this.beRealPhotoToken?.expiresAt!;
 
-    console.log(this.beRealPhotoToken?.expiresAt, Date.now(), this.beRealPhotoToken?.expiresAt! >= Date.now())
     return !isTokenExpired;
   }
 
@@ -59,7 +58,7 @@ export class AuthService {
     this.beRealPhotoToken = {
       idToken: idToken,
       refreshToken: refreshToken,
-      expiresAt: Date.now() + (+expiresIn)
+      expiresAt: Date.now() + ((+expiresIn) * 1000)
     }
     this.saveToken()
 

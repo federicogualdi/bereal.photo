@@ -24,12 +24,8 @@ export class SendOtpComponent implements OnInit {
   }
 
   sendOtp() {
-    console.log("otp sent", this.formGroup.value.phone);
-
-
     this.signInService.sendOtp(this.formGroup.value.phone!)
       .pipe(
-        tap((res) => console.log(res)),
         tap(() => this.router.navigate(['/sign-in/verify-otp'])),
       ).subscribe();
   }

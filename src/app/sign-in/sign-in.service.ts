@@ -43,7 +43,6 @@ export class SignInService {
         }
       }
     ).pipe(
-      tap(res => console.log(res)),
       tap(res => this.sessionInfo = res?.sessionInfo),
     )
   }
@@ -64,6 +63,8 @@ export class SignInService {
           key: this.authService.GOOGLE_KEY
         }
       }
-    ).pipe(tap(res => this.authService.otpVerified(res)))
+    ).pipe(
+      tap(res => this.authService.otpVerified(res)),
+    )
   }
 }

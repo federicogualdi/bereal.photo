@@ -36,7 +36,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       startWith(""),
       map(() => this.authService.isLoggedIn()),
       map((res) => {
-        console.log(res)
         if (res) {
           return true;
         }
@@ -44,7 +43,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return false;
       }),
       catchError((err) => {
-        console.log("PROVA")
         this.router.navigate(['/sign-in']);
         return of(false);
       })

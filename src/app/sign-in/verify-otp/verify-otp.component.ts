@@ -24,11 +24,9 @@ export class VerifyOtpComponent implements OnInit {
   }
 
   verifyOtp() {
-    console.log(this.formGroup.value.code)
     this.signInService.verifyOtp(this.formGroup.value.code!)
       .pipe(
         tap(() => this.router.navigate([''])),
       ).subscribe();
   }
-
 }
