@@ -1,0 +1,26 @@
+<div class="w-100 text-center mb-3">
+
+  <div class="card">
+    <img class="profile-img" [src]="feedFriend?.user?.profilePicture?.url">
+    <h5 class="card-title">{{feedFriend?.userName}}</h5>
+    <div class="card-body">
+
+      <ngb-carousel [interval]="3000" [pauseOnHover]="true" [pauseOnFocus]="true">
+        <ng-template ngbSlide *ngFor="let image of images">
+          <div class="picsum-img-wrapper">
+            <img [src]="image" height="500px" />
+          </div>
+          <div class="carousel-caption">
+            <h3>{{feedFriend?.caption}}</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+
+      <!-- <div class="card-text">
+        {{feedFriend?.caption}}
+      </div> -->
+
+    </div>
+  </div>
+
+</div>
