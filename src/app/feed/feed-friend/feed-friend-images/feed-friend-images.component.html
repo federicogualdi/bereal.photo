@@ -1,0 +1,3 @@
+<div #carousel class="parent" oncontextmenu="return false;">
+  <img *ngFor="let image of images; let i = index" class="feed-images image{{i}}" [src]="image" />
+</div>

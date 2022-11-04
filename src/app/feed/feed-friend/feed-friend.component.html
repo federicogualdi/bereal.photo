@@ -1,26 +1,37 @@
-<div class="w-100 text-center mb-3">
+<div class="w-100 text-center pb-3 feed">
 
-  <div class="card">
-    <img class="profile-img" [src]="feedFriend?.user?.profilePicture?.url">
-    <h5 class="card-title">{{feedFriend?.userName}}</h5>
-    <div class="card-body">
+  <div class="card bg-transparent">
 
-      <ngb-carousel [interval]="3000" [pauseOnHover]="true" [pauseOnFocus]="true">
-        <ng-template ngbSlide *ngFor="let image of images">
-          <div class="picsum-img-wrapper">
-            <img [src]="image" height="500px" />
-          </div>
-          <div class="carousel-caption">
-            <h3>{{feedFriend?.caption}}</h3>
-          </div>
-        </ng-template>
-      </ngb-carousel>
+    <div class="d-flex d-row align-items-center pb-2">
+      <div class="feed-header-spacing">
+        <ng-container *ngIf="feedFriend?.user?.profilePicture?.url; else profile_default">
+          <ng-container *ngTemplateOutlet="profile_pic">
+          </ng-container>
+        </ng-container>
+      </div>
+      <span class="feed-header-spacing h5 text-white">{{feedFriend?.userName}}</span>
+    </div>
 
-      <!-- <div class="card-text">
-        {{feedFriend?.caption}}
-      </div> -->
+    <div class="w-100 bg-transparent">
+      <app-feed-friend-images [feedFriend]="feedFriend">
+      </app-feed-friend-images>
+
+      <div class="mt-2 text-white">
+        <span>{{feedFriend?.caption}}</span>
+      </div>
 
     </div>
   </div>
 
 </div>
+
+
+<ng-template #profile_pic>
+  <img class="profile-img" [src]="feedFriend?.user?.profilePicture?.url">
+</ng-template>
+
+<ng-template #profile_default>
+  <div class="profile-img circle text-inside">
+    <span>{{feedFriend?.userName?.slice(0,1)}}</span>
+  </div>
+</ng-template>

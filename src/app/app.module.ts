@@ -7,10 +7,12 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/token.interceptor';
+import { LazyImgDirective } from './core/directive/lazy-img.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LazyImgDirective,
   ],
   imports: [
     BrowserModule,

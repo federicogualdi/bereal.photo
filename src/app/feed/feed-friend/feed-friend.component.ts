@@ -10,12 +10,8 @@ export class FeedFriendComponent implements OnInit {
 
   @Input() feedFriend?: FeedFriend;
 
-  images: string[] = [];
-
   constructor() { }
 
-  ngOnInit(): void {
-    this.images = [this.feedFriend?.photoURL!, this.feedFriend?.secondaryPhotoURL!];
-  }
+  ngOnInit(): void { }
 
 }
