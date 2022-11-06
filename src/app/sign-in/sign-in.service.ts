@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthService } from '../core/auth.service';
 
 export type OtpVerified = {
@@ -14,8 +15,6 @@ export type OtpVerified = {
 })
 export class SignInService {
 
-  protected basePath = 'https://7o3ud6unh2.execute-api.eu-south-1.amazonaws.com';
-
   private readonly SEND_OTP = "/sendVerificationCode";
   private readonly VERIFY_OTP = "/verifyPhoneNumber";
 
@@ -28,7 +27,7 @@ export class SignInService {
 
   sendOtp(phoneNumber: string) {
     return this.httpClient.post<any>(
-      this.basePath + this.SEND_OTP,
+      environment.basePath + this.SEND_OTP,
       {
         phoneNumber: phoneNumber,
         iosReceipt: "AEFDNu9QZBdycrEZ8bM_2-Ei5kn6XNrxHplCLx2HYOoJAWx-uSYzMldf66-gI1vOzqxfuT4uJeMXdreGJP5V1pNen_IKJVED3EdKl0ldUyYJflW5rDVjaQiXpN0Zu2BNc1c"
@@ -49,7 +48,7 @@ export class SignInService {
 
   verifyOtp(code: string) {
     return this.httpClient.post<OtpVerified>(
-      this.basePath + this.VERIFY_OTP,
+      environment.basePath + this.VERIFY_OTP,
       {
         sessionInfo: this.sessionInfo,
         code: code,

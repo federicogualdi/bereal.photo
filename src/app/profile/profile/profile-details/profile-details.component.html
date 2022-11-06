@@ -1,0 +1,25 @@
+<ng-container *ngIf="relationshipFriend?.profilePicture?.url; else profile_default">
+  <ng-container *ngTemplateOutlet="profile_pic">
+  </ng-container>
+</ng-container>
+
+
+
+
+<ng-template #profile_pic>
+  <div class="image-container">
+    <img class="profile-picture" [src]="relationshipFriend.profilePicture.url" />
+    <span class="bottom-left">{{ relationshipFriend.fullname }}</span>
+  </div>
+</ng-template>
+
+<ng-template #profile_default>
+  <div class="profile-picture-default">
+
+    <div class="circle-l text-inside">
+      <span>{{relationshipFriend.username?.slice(0,1)}}</span>
+    </div>
+
+    <span class="profile-picture-default-text">{{ relationshipFriend.fullname }}</span>
+  </div>
+</ng-template>

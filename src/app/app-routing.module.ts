@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./feed/feed.module').then(m => m.FeedModule)
   },
   {
+    path: "profile",
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'sign-in',

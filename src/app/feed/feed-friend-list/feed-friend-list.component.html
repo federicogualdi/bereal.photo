@@ -1,4 +1,18 @@
-<app-feed-friend
-  *ngFor="let feed of friendsService.feedFriends$ | async"
-  [feedFriend]="feed">
-</app-feed-friend>
+<ng-container *ngIf="feedService.feedFriends$.value?.length! > 0; else no_bereal">
+  <ng-container *ngTemplateOutlet="load_feeds">
+  </ng-container>
+</ng-container>
+
+
+<ng-template #load_feeds>
+  <app-feed-friend *ngFor="let feed of feedService.feedFriends$ | async; trackBy: trackByIdentity"
+  [feedFriend]="feed"
+    [routerLink]="['/profile', feed.userName]">
+  </app-feed-friend>
+</ng-template>
+
+<ng-template #no_bereal>
+  <div class="no-bereal-found">
+    <span class="no-bereal-found-text">Nessun BeReal trovato</span>
+  </div>
+</ng-template>

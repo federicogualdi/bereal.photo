@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, tap, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { OtpVerified } from '../sign-in/sign-in.service';
 
 type RefreshToken = {
@@ -19,8 +20,6 @@ type BeRealPhotoToken = {
   providedIn: 'root'
 })
 export class AuthService {
-
-  protected basePath = 'https://7o3ud6unh2.execute-api.eu-south-1.amazonaws.com';
 
   private readonly REFRESH_TOKEN_URL = "/refreshToken";
 
@@ -84,7 +83,7 @@ export class AuthService {
 
   refreshToken() {
     return this.httpClient.post<RefreshToken>(
-      this.basePath + this.REFRESH_TOKEN_URL,
+      environment.basePath + this.REFRESH_TOKEN_URL,
       {
         refresh_token: this.getRefreshToken()?.refreshToken,
         grant_type: "refresh_token"

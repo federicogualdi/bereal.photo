@@ -1,0 +1,10 @@
+<nav class="navbar fixed-top bg-transparent">
+  <div class="w-100 d-flex flex-row align-content-center justify-content-center">
+    <a class="profile-navbar w-100 text-left text-white" [routerLink]="['/']">
+      <i class="bi bi-arrow-left"></i>
+      <span class="username-spacing">{{ username }}</span>
+    </a>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

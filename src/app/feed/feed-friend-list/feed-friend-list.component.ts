@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FriendsService } from '../friends.service';
+import { FeedFriend } from 'src/app/shared/model/feed-friend';
+import { FeedService } from '../feed.service';
 
 @Component({
   selector: 'app-feed-friend-list',
@@ -9,14 +10,12 @@ import { FriendsService } from '../friends.service';
 export class FeedFriendListComponent implements OnInit {
 
   constructor(
-    public friendsService: FriendsService,
-  ) {
-    if (friendsService.feedFriends$.value.length === 0) {
-      friendsService.getFeedFriends().subscribe();
-    }
-  }
+    public feedService: FeedService,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  trackByIdentity = (index: number, item: FeedFriend) => item.id;
 
 }

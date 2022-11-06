@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { FeedFriend } from '../shared/model/feed-friend';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FriendsService {
-
-  protected basePath = 'https://7o3ud6unh2.execute-api.eu-south-1.amazonaws.com';
+export class FeedService {
 
   private readonly FEEDS_FRIEND_URL = "/api/feeds/friends";
 
@@ -19,6 +18,9 @@ export class FriendsService {
   ) { }
 
   getFeedFriends() {
-    return this.httpClient.get<FeedFriend[]>(this.basePath + this.FEEDS_FRIEND_URL).pipe(tap((res) => this.feedFriends$.next(res)));
+    return this.httpClient.get<FeedFriend[]>(environment.basePath + this.FEEDS_FRIEND_URL)
+      .pipe(
+        tap((res) => this.feedFriends$.next(res)),
+      );
   }
 }
