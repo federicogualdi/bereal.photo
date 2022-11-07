@@ -1,9 +1,9 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'ngx-toastr/toastr';
 
 body {
-  height: 100%;
   color: white;
   background-color: black;
 }

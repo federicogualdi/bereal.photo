@@ -1,3 +1,11 @@
 <div #carousel class="parent" oncontextmenu="return false;">
   <img *ngFor="let image of images; let i = index" class="feed-images image{{i}}" [src]="image" />
+
+  <nav class="w-100 toolbar navbar">
+    <div class="w-100 d-flex flex-row justify-content-end">
+      <a #download>
+        <i class="bi bi-download"></i>
+      </a>
+    </div>
+  </nav>
 </div>

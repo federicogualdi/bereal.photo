@@ -2,7 +2,7 @@
 
   <div class="card bg-transparent">
 
-    <div class="d-flex d-row align-items-center pb-2">
+    <div class="d-flex d-row align-items-center pb-2 clickable" [routerLink]="['/profile', feedFriend?.userName]">
       <div class="feed-header-spacing">
         <ng-container *ngIf="feedFriend?.user?.profilePicture?.url; else profile_default">
           <ng-container *ngTemplateOutlet="profile_pic">
@@ -13,7 +13,7 @@
     </div>
 
     <div class="w-100 bg-transparent">
-      <app-feed-friend-images [feedFriend]="feedFriend">
+      <app-feed-friend-images class="feed-friend-images" [feedFriend]="feedFriend">
       </app-feed-friend-images>
 
       <div class="mt-2 text-white">

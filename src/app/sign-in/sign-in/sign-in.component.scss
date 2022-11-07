@@ -1,13 +1,25 @@
 .form-signin {
-  max-width: 330px;
+  max-width: 450px;
   padding: 15px;
+
+  &-details {
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    width: 300px;
+    padding: 15px;
+  }
 }
 
 main {
   height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  // padding-top: 40px;
+  // padding-bottom: 40px;
   background-color: #000;
+}
+
+.title {
+  font-size: 3rem;
 }

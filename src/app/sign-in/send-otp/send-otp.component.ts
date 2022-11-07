@@ -20,8 +20,7 @@ export class SendOtpComponent implements OnInit {
     private signInService: SignInService,
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   sendOtp() {
     this.signInService.sendOtp(this.formGroup.value.phone!)

@@ -6,8 +6,7 @@
 
 <ng-template #load_feeds>
   <app-feed-friend *ngFor="let feed of feedService.feedFriends$ | async; trackBy: trackByIdentity"
-  [feedFriend]="feed"
-    [routerLink]="['/profile', feed.userName]">
+  [feedFriend]="feed">
   </app-feed-friend>
 </ng-template>
 
